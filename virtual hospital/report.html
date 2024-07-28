@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Head content remains unchanged -->
+</head>
+<body>
+  <header>
+    <h1> Virtual chikitsAlayaH</h1>
+  </header>
+  <div class="container1">
+    <form id="symptomForm">
+      <!-- Form inputs -->
+    </form>
+    <div id="response" class="response"></div>
+    <button id="generateReportBtn">Generate Report</button>
+    <a id="downloadLink" style="display: none;">Download Report</a>
+  </div>
+  <div class="footerhead">
+    <!-- Footer content remains unchanged -->
+  </div>
+  <script>
+    // JavaScript code remains unchanged
+
+    document.getElementById('generateReportBtn').addEventListener('click', function() {
+      generateReport();
+    });
+
+    function generateReport() {
+      const symptoms = [
+        document.getElementById('symptom1').value.toLowerCase(),
+        document.getElementById('symptom2').value.toLowerCase(),
+        document.getElementById('symptom3').value.toLowerCase(),
+        document.getElementById('symptom4').value.toLowerCase()
+      ];
+
+      const possibleDiseases = [];
+      const reportContent = [];
+
+      for (const [disease, details] of Object.entries(diseases)) {
+        if (symptoms.every(symptom => details.symptoms.includes(symptom))) {
+          possibleDiseases.push(disease);
+        }
+      }
+
+      if (possibleDiseases.length > 0) {
+        reportContent.push("Health Report\n\n");
+        reportContent.push("Symptoms:\n");
+        symptoms.forEach((symptom, index) => {
+          reportContent.push(`${index + 1}. ${symptom}\n`);
+        });
+        reportContent.push("\nIdentified Diseases:\n");
+        possibleDiseases.forEach((disease, index) => {
+          reportContent.push(`${index + 1}. ${disease}\n`);
+          reportContent.push(`Description: ${diseases[disease].description}\n`);
+          reportContent.push(`Suggested Medicines: ${diseases[disease].medicines.join(', ')}\n`);
+          reportContent.push(`Consult: ${diseases[disease].doctor}\n\n`);
+        });
+
+        const blob = new Blob(reportContent, { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = url;
+        downloadLink.download = 'health_report.txt';
+        downloadLink.style.display = 'block';
+      } else {
+        alert("No matching diseases found.");
+      }
+    }
+  </script>
+</body>
+</html>

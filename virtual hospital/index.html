@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, .container, .footer-content {
+            padding: 20px;
+        }
+        header {
+            background-color: #061b2c;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+        .user-tag {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #0c87ec;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .container {
+            text-align: center;
+        }
+        .container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .container h2, .container h3, .container h4, .container p, .container a {
+            margin: 20px 0;
+        }
+        .container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0c87ec;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .footer {
+            background-color: #574e4e;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .footer-content {
+            max-width: 600px;
+            margin: auto;
+        }
+        @media (max-width: 768px) {
+            .container img {
+                height: auto;
+                width: 100%;
+            }
+            .container p1 {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="Screenshot 2024-03-17 194943.png" alt="Logo" height="100">
+    </div>
+    <header>
+        <h1>Virtual chikitsAlayaH</h1>
+        <div class="user-tag" id="userTag"></div>
+    </header>
+    <div class="container">
+        <div class="background">
+            <img src="backgrounfd pic.jpg" alt="Background Image" height="1000px" width="1600px">
+        </div>
+        <h2>Stay safe and Healthy</h2>
+        <h3>About Virtual chikitsAlayaH</h3>
+        <p>
+            A virtual hospital is a concept that leverages digital technology to provide comprehensive healthcare services remotely,
+            without the need for a physical hospital building. It integrates various telehealth and telemedicine solutions
+            to deliver medical care, consultations, monitoring, and support to patients in their homes or other locations.
+            The virtual hospital model typically includes several key components:
+        </p>
+        <ul>
+            <li>Telemedicine Consultations: Patients can access healthcare professionals through video conferencing, phone calls, or secure messaging platforms for consultations, diagnosis, and treatment recommendations. This allows individuals to receive timely care without the need to travel to a physical clinic or hospital.</li>
+            <li>Remote Monitoring: Wearable devices, sensors, and mobile apps enable continuous monitoring of patients' vital signs, symptoms, and medication adherence. Healthcare providers can remotely track patients' progress, detect early warning signs, and intervene as necessary to prevent complications.</li>
+            <li>Digital Health Records: Electronic health records (EHRs) and secure online platforms enable seamless sharing of patient information among healthcare providers, ensuring continuity of care and facilitating collaborative decision-making.</li>
+            <li>Virtual Care Teams: Multidisciplinary teams of healthcare professionals, including physicians, nurses, pharmacists, and allied health professionals, collaborate virtually to coordinate patient care, address concerns, and provide support.</li>
+        </ul>
+        <p>
+            Virtual hospitals have the potential to improve access to healthcare, particularly for individuals in remote or underserved areas, those with mobility limitations, and those at higher risk of complications from in-person visits. By leveraging digital technology, virtual hospitals can enhance efficiency, reduce healthcare costs, and promote patient-centered care.
+        </p>
+        <img src="1st pic.png" alt="Example Image">
+        
+        <a href="profile.html"><b>Check your health</b></a>
+        <h4><b>How to Check your health</b></h4>
+        <div>
+            <p>
+                (1) Login to the Website: Begin by accessing the website and logging into your account. Enter your username and password in the designated fields and click on the "Login" or "Sign In" button. Once authenticated, you'll be directed to your personalized interface.
+            </p>
+            <p>
+                (2) Navigate to the Health Tag Section: Look for the "Health" or "Health Tag" option on the navigation menu or dashboard. This could be located under a specific tab or section dedicated to health-related activities or services.
+            </p>
+            <p>
+                (3) Provide Your Details: Click on the "Health Tag" option to access the feature. You'll likely be prompted to provide details such as your name, age, gender, and any other relevant personal information. This step helps customize the health assessment process according to your specific demographics.
+            </p>
+            <p>
+                (4) Enter Symptoms: Next, you'll be asked to describe any symptoms you're experiencing. This could include physical discomfort, pain, changes in bodily functions, or any other relevant signs that may indicate a health issue. Take your time to accurately describe your symptoms to ensure the system can provide the most relevant assessment.
+            </p>
+            <p>
+                (5) Submit Your Information: After entering all necessary details and symptom descriptions, locate the "Submit" or "Submit Information" button on the interface. Click on this button to send your data for analysis.
+            </p>
+        </div>
+        <img src="Screenshot 2024-04-21 173100.png" alt="Example Image" height="100" width="1600">
+    </div>
+    <div class="footer">
+        <div class="footer-content">
+            <h3>Contact Us</h3>
+            <p>Email: chikitsalayah38323@.com</p>
+            <p>Phone: 7461065458</p>
+            <p>Address: Sage University, Bhopal, India</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('userTag').innerText = 'Welcome, ' + username;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Hospital</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes buttonHover {
+      from {
+        background-color: #20d6c4;
+      }
+      to {
+        background-color: #00796b;
+      }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .symptomForm{
+      position: absolute;
+      top: 50px;
+
+    }
+    
+    header {
+      background-color: #3cb6a2;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    .container1 {
+      padding: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    .container1 form {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(2, 242, 251, 0.1);
+    }
+    
+    .container1 label,
+    .container1 input {
+      margin-bottom: 10px;
+    }
+    
+    .container1 input {
+      padding: 10px;
+      border: 1px solid #bdbdbd;
+      border-radius: 5px;
+      transition: box-shadow 0.3s;
+    }
+    
+    .container1 input:focus {
+      box-shadow: 0 0 5px rgba(15, 190, 172, 0.5);
+    }
+    
+    .container1 button {
+      padding: 10px;
+      background-color: #009688;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .container1 button:hover {
+      background-color: #00796b;
+      transform: scale(1.05);
+      animation: buttonHover 0.3s forwards;
+    }
+    
+    .container1 img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 20px auto;
+    }
+    
+    .footerhead {
+      position: absolute;
+      top: 1000px;
+      padding-left: 550px;
+      padding-right: 550px;
+      background-color: #3dcbb3;
+      text-align: center;
+      color: white;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    .footerhead-content {
+      max-width: 600px;
+      margin: auto;
+    }
+    
+    .response {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    .duplicate {
+      border: 2px solid red;
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 0;
+      }
+      
+      .container1 {
+        padding: 10px;
+      }
+      
+      .container1 form {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1> Virtual chikitsAlayaH</h1>
+  </header>
+  <div class="container1">
+    <form id="symptomForm">
+      <label for="symptom1">Symptom 1:</label>
+      <input type="text" id="symptom1" name="symptom1" required>
+      <label for="symptom2">Symptom 2:</label>
+      <input type="text" id="symptom2" name="symptom2" required>
+      <label for="symptom3">Symptom 3:</label>
+      <input type="text" id="symptom3" name="symptom3" required>
+      <label for="symptom4">Symptom 4:</label>
+      <input type="text" id="symptom4" name="symptom4" required>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="response" class="response"></div>
+  </div>
+  <div class="footerhead">
+    <div class="footerhead-content">
+      <h3>Contact Us</h3>
+      <p>Email: chikitsalayah38323@.com</p>
+      <p>Phone: 7461065458</p>
+      <p>Address: Sage University, Bhopal, India</p>
+    </div>
+  </div>
+  <script>
+    const diseases = {
+      "Common Cold": {
+        symptoms: ["cough", "sore throat", "runny nose", "congestion"],
+        description: "The common cold is a mild viral infection of the upper respiratory tract, primarily caused by rhinoviruses. It spreads through airborne droplets, direct contact with infected individuals, or touching contaminated surfaces. Symptoms typically include a runny or stuffy nose, sore throat, cough, and congestion. It usually resolves within a week or ten days. Treatment focuses on relieving symptoms with over-the-counter medications, rest, and hydration.",
+        medicines: ["Decongestants", "Cough suppressants", "Pain relievers like ibuprofen or acetaminophen"],
+        doctor: "Primary care physician"
+      },
+      "Flu": {
+        symptoms: ["fever", "chills", "muscle aches", "cough", "congestion", "runny nose", "fatigue"],
+        description: "Influenza, commonly known as the flu, is a contagious respiratory illness caused by influenza viruses. Symptoms include fever, chills, muscle aches, cough, congestion, runny nose, and fatigue. The flu can lead to severe illness and complications, especially in vulnerable populations. Annual vaccination is the most effective way to prevent the flu. Treatment includes antiviral medications, rest, and fluids.",
+        medicines: ["Antiviral drugs (e.g., oseltamivir)", "Pain relievers like ibuprofen or acetaminophen"],
+        doctor: "Primary care physician"
+      },
+      "COVID-19": {
+        symptoms: ["fever", "dry cough", "tiredness", "loss of taste or smell"],
+        description: "COVID-19 is an infectious disease caused by the SARS-CoV-2 virus. It primarily spreads through respiratory droplets. Common symptoms include fever, dry cough, tiredness, and loss of taste or smell. Severe cases can lead to pneumonia and other complications. Prevention includes vaccination, wearing masks, maintaining social distancing, and practicing good hand hygiene. Treatment varies based on the severity of the disease, ranging from home care to hospitalization.",
+        medicines: ["Antiviral drugs (e.g., remdesivir)", "Supportive care (e.g., oxygen therapy)", "Over-the-counter medications for symptom relief"],
+        doctor: "Primary care physician or Infectious disease specialist"
+      },
+      "Strep Throat": {
+        symptoms: ["sore throat", "painful swallowing", "fever", "red and swollen tonsils"],
+        description: "Strep throat is a bacterial infection caused by group A Streptococcus bacteria. It causes a sore throat, painful swallowing, fever, and red, swollen tonsils. Strep throat is highly contagious and spreads through respiratory droplets. Antibiotics are prescribed to treat the infection, relieve symptoms, and prevent complications. Rest, hydration, and over-the-counter pain relievers can also help manage symptoms.",
+        medicines: ["Antibiotics (e.g., penicillin or amoxicillin)", "Pain relievers like ibuprofen or acetaminophen"],
+        doctor: "Primary care physician or Pediatrician"
+      },
+      "Allergies": {
+        symptoms: ["sneezing", "runny nose", "itchy eyes", "congestion", "cough"],
+        description: "Allergies are an immune system response to foreign substances, such as pollen, pet dander, or certain foods. Symptoms can include sneezing, runny nose, itchy eyes, congestion, and cough. Allergies are typically managed with antihistamines, nasal sprays, and avoiding known allergens. Severe allergic reactions (anaphylaxis) require immediate medical attention and may be treated with epinephrine.",
+        medicines: ["Antihistamines (e.g., cetirizine, loratadine)", "Nasal corticosteroids (e.g., fluticasone)", "Decongestants"],
+        doctor: "Allergist or Immunologist"
+      }
+    };
+
+    document.getElementById('symptomForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const symptoms = [
+        document.getElementById('symptom1').value.toLowerCase(),
+        document.getElementById('symptom2').value.toLowerCase(),
+        document.getElementById('symptom3').value.toLowerCase(),
+        document.getElementById('symptom4').value.toLowerCase()
+      ];
+      
+      const possibleDiseases = [];
+      
+      for (const [disease, details] of Object.entries(diseases)) {
+        if (symptoms.every(symptom => details.symptoms.includes(symptom))) {
+          possibleDiseases.push(disease);
+        }
+      }
+      
+      const responseElement = document.getElementById('response');
+      responseElement.innerHTML = "";
+      
+      if (possibleDiseases.length > 0) {
+        possibleDiseases.forEach(disease => {
+          const diseaseElement = document.createElement('div');
+          diseaseElement.classList.add('disease');
+          diseaseElement.innerHTML = `
+            <h4>${disease}</h4>
+            <p>${diseases[disease].description}</p>
+            <p><strong>Suggested Medicines:</strong> ${diseases[disease].medicines.join(', ')}</p>
+            <p><strong>Consult:</strong> ${diseases[disease].doctor}</p>
+          `;
+          responseElement.appendChild(diseaseElement);
+        });
+      } else {
+        responseElement.innerText = "No matching diseases found.";
+      }
+    });
+  </script>
+<div class="container1">
+  <form id="symptomForm">
+    <!-- Form inputs -->
+  </form>
+  <div id="response" class="response"></div>
+  <button id="generateReportBtn">Generate Report</button>
+  <a id="downloadLink" style="display: none;">Download Report</a>
+</div>
+<div class="footerhead">
+  <!-- Footer content remains unchanged -->
+</div>
+<script>
+  // JavaScript code remains unchanged
+
+  document.getElementById('generateReportBtn').addEventListener('click', function() {
+    generateReport();
+  });
+
+  function generateReport() {
+    const symptoms = [
+      document.getElementById('symptom1').value.toLowerCase(),
+      document.getElementById('symptom2').value.toLowerCase(),
+      document.getElementById('symptom3').value.toLowerCase(),
+      document.getElementById('symptom4').value.toLowerCase()
+    ];
+
+    const possibleDiseases = [];
+    const reportContent = [];
+
+    for (const [disease, details] of Object.entries(diseases)) {
+      if (symptoms.every(symptom => details.symptoms.includes(symptom))) {
+        possibleDiseases.push(disease);
+      }
+    }
+
+    if (possibleDiseases.length > 0) {
+      reportContent.push("Health Report\n\n");
+      reportContent.push("Symptoms:\n");
+      symptoms.forEach((symptom, index) => {
+        reportContent.push(`${index + 1}. ${symptom}\n`);
+      });
+      reportContent.push("\nIdentified Diseases:\n");
+      possibleDiseases.forEach((disease, index) => {
+        reportContent.push(`${index + 1}. ${disease}\n`);
+        reportContent.push(`Description: ${diseases[disease].description}\n`);
+        reportContent.push(`Suggested Medicines: ${diseases[disease].medicines.join(', ')}\n`);
+        reportContent.push(`Consult: ${diseases[disease].doctor}\n\n`);
+      });
+
+      const blob = new Blob(reportContent, { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const downloadLink = document.getElementById('downloadLink');
+      downloadLink.href = url;
+      downloadLink.download = 'health_report.txt';
+      downloadLink.style.display = 'block';
+    } else {
+      alert("No matching diseases found.");
+    }
+  }
+</script>
+</body>
+</html>
+  
+
+</body>
+</html>
